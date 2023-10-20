@@ -59,7 +59,7 @@
     "@vue/tsconfig": "^0.4.0",
     "commit-and-tag-version": "^11.3.0",
     "conventional-changelog": "^5.1.0",
-    "conventional-changelog-aaron-preset": "^0.2.2",
+    "conventional-changelog-aaron-preset": "^1.0.4",
     "conventional-changelog-cli": "^4.1.0",
     "cypress": "^13.3.2",
     "eslint": "^8.51.0",
