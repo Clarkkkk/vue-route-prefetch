@@ -18,7 +18,7 @@
  **/
 import { inBrowser, canPrefetch } from './utils'
 
-const preFetched = {}
+const preFetched: Record<string, boolean> = {}
 
 /**
  * Checks if a feature on `link` is natively supported.
@@ -26,7 +26,7 @@ const preFetched = {}
  * @param {string} feature - name of the feature to test
  * @return {Boolean} whether the feature is supported
  */
-function support(feature) {
+function support(feature: string) {
   if (!inBrowser) {
     return
   }
@@ -39,7 +39,7 @@ function support(feature) {
  * @param {string} url - the URL to fetch
  * @return {Object} a Promise
  */
-function linkPrefetchStrategy(url) {
+function linkPrefetchStrategy(url: string) {
   return new Promise((resolve, reject) => {
     const link = document.createElement(`link`)
     link.rel = `prefetch`
@@ -57,8 +57,8 @@ function linkPrefetchStrategy(url) {
  * @param {string} url - the URL to fetch
  * @return {Object} a Promise
  */
-function xhrPrefetchStrategy(url) {
-  return new Promise((resolve, reject) => {
+function xhrPrefetchStrategy(url: string) {
+  return new Promise<void>((resolve, reject) => {
     const req = new XMLHttpRequest()
 
     req.open(`GET`, url, (req.withCredentials = true))
@@ -77,7 +77,7 @@ function xhrPrefetchStrategy(url) {
  * @param {string} url - the URL to fetch
  * @return {Object} a Promise
  */
-function highPriFetchStrategy(url) {
+function highPriFetchStrategy(url: string) {
   // TODO: Investigate using preload for high-priority
   // fetches. May have to sniff file-extension to provide
   // valid 'as' values. In the future, we may be able to
@@ -85,7 +85,7 @@ function highPriFetchStrategy(url) {
   //
   // As of 2018, fetch() is high-priority in Chrome
   // and medium-priority in Safari.
-  return self.fetch
+  return !!self.fetch
     ? fetch(url, { credentials: `include` })
     : xhrPrefetchStrategy(url)
 }
@@ -101,14 +101,14 @@ const supportedPrefetchStrategy = support('prefetch')
  * @param {Object} conn - navigator.connection (internal)
  * @return {Object} a Promise
  */
-function prefetcher(url, isPriority) {
+function prefetcher(url: string, isPriority?: boolean) {
   if (!canPrefetch || preFetched[url]) {
     return
   }
 
   // Wanna do something on catch()?
   return (isPriority ? highPriFetchStrategy : supportedPrefetchStrategy)(
-    url
+    url,
   ).then(() => {
     preFetched[url] = true
   })
