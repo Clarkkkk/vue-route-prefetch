@@ -5,6 +5,7 @@
   "license": "MIT",
   "author": "Aaron Zhou",
   "packageManager": "pnpm@8.9.0",
+  "type": "module",
   "files": [
     "dist"
   ],
@@ -17,6 +18,7 @@
     "prefetch page",
     "quicklink"
   ],
+  "sideEffects": false,
   "homepage": "https://github.com/Clarkkkk/vue-router-prefetch#readme",
   "repository": {
     "type": "git",
