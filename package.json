@@ -1,6 +1,6 @@
 {
   "name": "vue-route-prefetch",
-  "version": "1.0.0",
+  "version": "3.0.0",
   "description": "A Vue plugin to prefetch the route components.",
   "license": "MIT",
   "author": "Aaron Zhou",
@@ -27,14 +27,19 @@
   "bugs": {
     "url": "https://github.com/Clarkkkk/vue-router-prefetch/issues"
   },
-  "main": "dist/index.js",
-  "module": "dist/index.esm.js",
-  "types": "types/index.d.ts",
+  "main": "dist/index.cjs",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/src/index.d.ts",
+      "require": "./dist/index.cjs",
+      "import": "./dist/index.js"
+    }
+  },
   "scripts": {
     "test": "npm run test:e2e",
-    "lint": "xo",
-    "build": "bili --format esm,cjs,esm-min --minimal",
-    "prepublishOnly": "npm run build",
+    "build": "tsc && vite build",
     "example": "vite example",
     "commit": "git-cz",
     "cy:run": "cypress run",
@@ -68,6 +73,7 @@
     "npm-run-all": "^4.1.5",
     "prettier": "^3.0.3",
     "rollup-plugin-node-externals": "^6.1.2",
+    "typescript": "^5.2.2",
     "vite": "^4.5.0",
     "vite-plugin-dts": "^3.6.0",
     "vitest": "^0.34.6",
