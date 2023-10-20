@@ -1,3 +1,40 @@
+# 3.0.0    (2023-10-20)
+
+
+
+## **Features**
+
+* refactor the plugin and expose a composable ([e3f3796b](https://github.com/Clarkkkk/vue-router-prefetch/commit/e3f3796b343c854151d38c260bfdd0c2cdc2c5d0))
+    
+    ### **Description**
+    
+    - refactor the plugin with composition API
+    - rewrite all the code with TypeScript
+    - export a composable `usePrefetch` for manully prefetching
+    
+    
+    ### **BREAKING CHANGE**
+    
+    - `componentName` defaults to 'PrefetchLink' now
+    
+
+## **Documentation**
+
+* update README and LICENSE ([9807d8a6](https://github.com/Clarkkkk/vue-router-prefetch/commit/9807d8a630a464d9cca4d8253ee192cb3df1c4cf))
+
+## **Chores**
+
+* update CHANGELOG ([59bcd2bc](https://github.com/Clarkkkk/vue-router-prefetch/commit/59bcd2bcb3611ec7ca77fc0a793355080d978274))
+* build config ([9d7b5657](https://github.com/Clarkkkk/vue-router-prefetch/commit/9d7b5657cf768b8304d3857827453d83204d5876))
+* github actions ([c03a2fd3](https://github.com/Clarkkkk/vue-router-prefetch/commit/c03a2fd331d83824bf1be8b8329eefb4a4848c5d))
+* add `"type": "module"` ([c5ac69cd](https://github.com/Clarkkkk/vue-router-prefetch/commit/c5ac69cd2a3e4e63c32f13b9d1e49d9c063f6810))
+* udpate package.json ([3078024b](https://github.com/Clarkkkk/vue-router-prefetch/commit/3078024b1005e15e0033f56d24c49c27e1268b3a))
+* tsconfig and cleanup ([c4200904](https://github.com/Clarkkkk/vue-router-prefetch/commit/c4200904ddde714ecdfe1d38110498d235ad60a1))
+* cypress migration to version 13 ([2c772abc](https://github.com/Clarkkkk/vue-router-prefetch/commit/2c772abc34a4bfcabde61835cf218ff2f5aab14e))
+* format config ([aa7ceb7d](https://github.com/Clarkkkk/vue-router-prefetch/commit/aa7ceb7d7a17e93f052cbf19af6dd5e9849d3157))
+* update deps and migrate to pnpm ([a23374c7](https://github.com/Clarkkkk/vue-router-prefetch/commit/a23374c7f485e86cff1ab0c06963a1732c08700b))
+
+
 
 # 2.0.2    (2021-08-12)
 
