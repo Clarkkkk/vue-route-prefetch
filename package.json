@@ -1,20 +1,33 @@
 {
-  "name": "vue-router-prefetch",
+  "name": "vue-route-prefetch",
   "version": "1.0.0",
-  "description": "Prefetch the route components of router-link in viewport.",
-  "author": "egoist<0x142857@gmail.com>",
+  "description": "A Vue plugin to prefetch the route components.",
   "license": "MIT",
+  "author": "Aaron Zhou",
+  "packageManager": "pnpm@8.9.0",
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "vue",
+    "prefetch",
+    "preload",
+    "vue-router",
+    "prefetch route",
+    "prefetch page",
+    "quicklink"
+  ],
+  "homepage": "https://github.com/Clarkkkk/vue-router-prefetch#readme",
   "repository": {
-    "url": "egoist/vue-router-prefetch",
-    "type": "git"
+    "type": "git",
+    "url": "git+https://github.com/Clarkkkk/vue-router-prefetch"
+  },
+  "bugs": {
+    "url": "https://github.com/Clarkkkk/vue-router-prefetch/issues"
   },
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
   "types": "types/index.d.ts",
-  "files": [
-    "dist",
-    "types"
-  ],
   "scripts": {
     "test": "npm run test:e2e",
     "lint": "xo",
@@ -37,14 +50,11 @@
     "@typescript-eslint/parser": "^6.8.0",
     "@vitejs/plugin-vue": "^4.4.0",
     "@vue/tsconfig": "^0.4.0",
-    "bili": "^5.0.5",
     "commit-and-tag-version": "^11.3.0",
-    "commitizen": "^4.3.0",
     "conventional-changelog": "^5.1.0",
     "conventional-changelog-aaron-preset": "^0.2.2",
     "conventional-changelog-cli": "^4.1.0",
     "cypress": "^13.3.2",
-    "cz-conventional-changelog": "^3.3.0",
     "eslint": "^8.51.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-config-standard": "^17.1.0",
@@ -56,13 +66,11 @@
     "npm-run-all": "^4.1.5",
     "prettier": "^3.0.3",
     "rollup-plugin-node-externals": "^6.1.2",
-    "semantic-release": "^22.0.5",
     "vite": "^4.5.0",
     "vite-plugin-dts": "^3.6.0",
     "vitest": "^0.34.6",
     "vue": "^3.3.4",
-    "vue-router": "^4.2.5",
-    "xo": "^0.56.0"
+    "vue-router": "^4.2.5"
   },
   "peerDependencies": {
     "vue": "^3",
