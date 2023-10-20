@@ -1,0 +1,36 @@
+{
+    "compilerOptions": {
+        "target": "esnext",
+        "useDefineForClassFields": true,
+        "module": "es2020",
+        "strict": true,
+        "jsx": "preserve",
+        "sourceMap": true,
+        "incremental": true,
+        "outDir": "node_modules/.cache",
+        "resolveJsonModule": true,
+        "isolatedModules": true,
+        "esModuleInterop": false,
+        "lib": [
+            "esnext",
+            "dom"
+        ],
+        "skipLibCheck": true,
+        "skipDefaultLibCheck": true,
+        "allowSyntheticDefaultImports": true,
+        "alwaysStrict": true,
+        "removeComments": true,
+        "noImplicitAny": true,
+        "strictNullChecks": true,
+        "forceConsistentCasingInFileNames": true,
+    },
+    "include": [
+        "src"
+    ],
+    "exclude": [
+        "node_modules"
+    ],
+    "extends": [
+        "@vue/tsconfig/tsconfig.json"
+    ]
+}

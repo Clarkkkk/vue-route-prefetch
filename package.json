@@ -28,7 +28,6 @@
     "typecheck": "tsc --noEmit --watch --preserveWatchOutput",
     "format": "eslint --fix --cache {src,example}/**/*.{vue,ts}",
     "prepare": "husky install",
-    "postinstall": "nuxt prepare",
     "uninstall-husky": "npm uninstall husky --no-save && git config --unset core.hooksPath && npx rimraf .husky",
     "changelog": "conventional-changelog -o CHANGELOG.md -p aaron-preset -r 0",
     "release": "commit-and-tag-version"
