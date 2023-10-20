@@ -2,6 +2,12 @@
   "name": "vue-router-prefetch",
   "version": "1.0.0",
   "description": "Prefetch the route components of router-link in viewport.",
+  "author": "egoist<0x142857@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "url": "egoist/vue-router-prefetch",
+    "type": "git"
+  },
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
   "types": "types/index.d.ts",
@@ -18,14 +24,15 @@
     "commit": "git-cz",
     "cy:run": "cypress run",
     "cy:open": "cypress open",
-    "test:e2e": "run-p --race example cy:run"
+    "test:e2e": "run-p --race example cy:run",
+    "typecheck": "tsc --noEmit --watch --preserveWatchOutput",
+    "format": "eslint --fix --cache {src,example}/**/*.{vue,ts}",
+    "prepare": "husky install",
+    "postinstall": "nuxt prepare",
+    "uninstall-husky": "npm uninstall husky --no-save && git config --unset core.hooksPath && npx rimraf .husky",
+    "changelog": "conventional-changelog -o CHANGELOG.md -p aaron-preset -r 0",
+    "release": "commit-and-tag-version"
   },
-  "repository": {
-    "url": "egoist/vue-router-prefetch",
-    "type": "git"
-  },
-  "author": "egoist<0x142857@gmail.com>",
-  "license": "MIT",
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^6.8.0",
     "@typescript-eslint/parser": "^6.8.0",
@@ -61,37 +68,5 @@
   "peerDependencies": {
     "vue": "^3",
     "vue-router": "^4"
-  },
-  "xo": {
-    "parserOptions": {
-      "parser": "babel-eslint",
-      "ecmaVersion": 2017,
-      "sourceType": "module"
-    },
-    "extends": [
-      "rem",
-      "plugin:vue/recommended",
-      "plugin:prettier/recommended"
-    ],
-    "envs": [
-      "browser",
-      "cypress/globals"
-    ],
-    "rules": {
-      "no-new": "off",
-      "no-unused-expressions": "off",
-      "import/no-unassigned-import": "off"
-    },
-    "plugins": [
-      "cypress"
-    ]
-  },
-  "release": {
-    "branch": "master"
-  },
-  "config": {
-    "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
-    }
   }
 }

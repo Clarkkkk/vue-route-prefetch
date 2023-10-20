@@ -16,7 +16,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  **/
-import { inBrowser, canPrefetch } from './utils'
+import { canPrefetch, inBrowser } from './utils'
 
 const preFetched: Record<string, boolean> = {}
 
@@ -27,11 +27,11 @@ const preFetched: Record<string, boolean> = {}
  * @return {Boolean} whether the feature is supported
  */
 function support(feature: string) {
-  if (!inBrowser) {
-    return
-  }
-  const link = document.createElement('link')
-  return link.relList && link.relList.supports && link.relList.supports(feature)
+    if (!inBrowser) {
+        return false
+    }
+    const link = document.createElement('link')
+    return link.relList && link.relList.supports && link.relList.supports(feature)
 }
 
 /**
@@ -40,16 +40,16 @@ function support(feature: string) {
  * @return {Object} a Promise
  */
 function linkPrefetchStrategy(url: string) {
-  return new Promise((resolve, reject) => {
-    const link = document.createElement(`link`)
-    link.rel = `prefetch`
-    link.href = url
+    return new Promise((resolve, reject) => {
+        const link = document.createElement(`link`)
+        link.rel = `prefetch`
+        link.href = url
 
-    link.addEventListener('load', resolve)
-    link.addEventListener('error', reject)
+        link.addEventListener('load', resolve)
+        link.addEventListener('error', reject)
 
-    document.head.appendChild(link)
-  })
+        document.head.appendChild(link)
+    })
 }
 
 /**
@@ -58,17 +58,17 @@ function linkPrefetchStrategy(url: string) {
  * @return {Object} a Promise
  */
 function xhrPrefetchStrategy(url: string) {
-  return new Promise<void>((resolve, reject) => {
-    const req = new XMLHttpRequest()
+    return new Promise<void>((resolve, reject) => {
+        const req = new XMLHttpRequest()
 
-    req.open(`GET`, url, (req.withCredentials = true))
+        req.open(`GET`, url, (req.withCredentials = true))
 
-    req.addEventListener('load', () => {
-      req.status === 200 ? resolve() : reject()
+        req.addEventListener('load', () => {
+            req.status === 200 ? resolve() : reject(new Error(req.status + req.statusText))
+        })
+
+        req.send()
     })
-
-    req.send()
-  })
 }
 
 /**
@@ -78,21 +78,17 @@ function xhrPrefetchStrategy(url: string) {
  * @return {Object} a Promise
  */
 function highPriFetchStrategy(url: string) {
-  // TODO: Investigate using preload for high-priority
-  // fetches. May have to sniff file-extension to provide
-  // valid 'as' values. In the future, we may be able to
-  // use Priority Hints here.
-  //
-  // As of 2018, fetch() is high-priority in Chrome
-  // and medium-priority in Safari.
-  return !!self.fetch
-    ? fetch(url, { credentials: `include` })
-    : xhrPrefetchStrategy(url)
+    // TODO: Investigate using preload for high-priority
+    // fetches. May have to sniff file-extension to provide
+    // valid 'as' values. In the future, we may be able to
+    // use Priority Hints here.
+    //
+    // As of 2018, fetch() is high-priority in Chrome
+    // and medium-priority in Safari.
+    return 'fetch' in self ? fetch(url, { credentials: `include` }) : xhrPrefetchStrategy(url)
 }
 
-const supportedPrefetchStrategy = support('prefetch')
-  ? linkPrefetchStrategy
-  : xhrPrefetchStrategy
+const supportedPrefetchStrategy = support('prefetch') ? linkPrefetchStrategy : xhrPrefetchStrategy
 
 /**
  * Prefetch a given URL with an optional preferred fetch priority
@@ -102,16 +98,14 @@ const supportedPrefetchStrategy = support('prefetch')
  * @return {Object} a Promise
  */
 function prefetcher(url: string, isPriority?: boolean) {
-  if (!canPrefetch || preFetched[url]) {
-    return
-  }
+    if (!canPrefetch || preFetched[url]) {
+        return Promise.resolve()
+    }
 
-  // Wanna do something on catch()?
-  return (isPriority ? highPriFetchStrategy : supportedPrefetchStrategy)(
-    url,
-  ).then(() => {
-    preFetched[url] = true
-  })
+    // Wanna do something on catch()?
+    return (isPriority ? highPriFetchStrategy : supportedPrefetchStrategy)(url).then(() => {
+        preFetched[url] = true
+    })
 }
 
 export default prefetcher
