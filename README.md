@@ -1,22 +1,30 @@
-# vue-router-prefetch
+# vue-route-prefetch
 
-[![NPM version](https://badgen.net/npm/v/vue-router-prefetch)](https://npmjs.com/package/vue-router-prefetch) [![NPM downloads](https://badgen.net/npm/dm/vue-router-prefetch)](https://npmjs.com/package/vue-router-prefetch) [![CircleCI](https://badgen.net/circleci/github/egoist/vue-router-prefetch/master)](https://circleci.com/gh/egoist/vue-router-prefetch/tree/master)
+[![NPM version][npm-image]][npm-url] [![NPM Downloads][npm-download]][npm-url] [![License][license]][license-url] [![Minified Size][minified-size]][npm-url] [![Build Status][build-status]][github-actions]
 
-**Please consider [donating](https://www.patreon.com/egoist) to this project's author, [EGOIST](#author), to show your ❤️ and support.**
+> Note: This is a fork of [vue-router-prefetch](https://github.com/egoist/vue-router-prefetch) with only Vue 3 support. If you are using Vue 2, please consider the original vue-router-prefetch.
 
 ## Features
 
 - Prefetch links when they are visible in viewport.
-- You don't need to change your code base to make it work.
+- Provide a composable for manually prefetch.
 - Tiny-size.
 
 ## Install
 
-```bash
-yarn add vue-router-prefetch
+```sh
+npm i vue-route-prefetch
 ```
 
-If you're using Vue 2, you should install `vue-router-prefetch@1` instead.
+Or
+
+```sh
+pnpm i vue-route-prefetch
+```
+
+```sh
+yarn add vue-route-prefetch
+```
 
 ## Usage
 
@@ -25,19 +33,18 @@ You need to use this plugin after `vue-router`:
 ```js
 import { createApp } from 'vue'
 import { createRouter } from 'vue-router'
-import RouterPrefetch from 'vue-router-prefetch'
+import PrefetchPlugin from 'vue-route-prefetch'
 
 const app = createApp()
 const router = createRouter()
-app.use(router)
-app.use(RouterPrefetch)
+app.use(router).use(PrefetchPlugin)
 ```
 
-Then you can use `<router-link>` without any changes, when this component is visible in viewport, it will automatically prefetch the (async) route component.
+Now you can replace your `<RouterLink>` that needs to prefetch to `<PrefetchLink>`. When this component is visible in viewport, it will automatically prefetch the (async) route component.
 
 **Check out the [live demo](https://stackblitz.com/edit/vue-nr9q5u).**
 
-You can also register it as a new component instead of overriding `<router-link>`:
+You can also register the component with another name:
 
 ```js
 app.use(RouterPrefetch, {
@@ -47,14 +54,9 @@ app.use(RouterPrefetch, {
 
 Now you can use it as `<quick-link>` in your app.
 
-## Browser Support
-
-- Without polyfills: Chrome, Firefox, Edge, Opera, Android Browser, Samsung Internet.
-- With [Intersection Observer polyfill](https://github.com/w3c/IntersectionObserver/tree/master/polyfill) ~6KB gzipped/minified: Safari, IE11
-
 ## Props
 
-All [props](https://router.vuejs.org/api/#router-link-props) of `<router-link>` are still available, additional props are listed below.
+All [props](https://router.vuejs.org/api/#router-link-props) of `<RouterLink>` are still available in `<PrefetchLink>`, additional props are listed below.
 
 ### prefetch
 
@@ -113,21 +115,57 @@ createRouter({
 
 Timeout after which prefetching will occur.
 
+## Manully prefetch
+
+You can prefetch manually by using `usePrefetch`.
+
+Signature:
+
+```TypeScript
+function usePrefetch(): {
+    perfetchRoute: (link: RouteLocationRaw) => void;
+    prefetchFiles: (files: string[]) => void;
+}
+```
+
+```html
+<script setup>
+import { usePrefetch } from 'vue-route-prefetch'
+
+const { prefetchRoute, prefetchFiles } = usePrefetch()
+</script>
+<template>
+  <div>
+    <button @mouseenter="prefetchRoute('/details')">
+      See details
+    </button>
+    <button @mouseenter="prefetchFiles('/theme.css')">
+      Switch theme
+    </button>
+  </div>
+</template>
+```
+
+## Browser Support
+
+It works on the browsers with the support of [Intersection Observer API](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API) (See [compatibility](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API#browser_compatibility)). Otherwise, you may need a [polyfill](https://github.com/w3c/IntersectionObserver/tree/master/polyfill).
+
 ## Credits
 
-Inspired by [quicklink](https://github.com/GoogleChromeLabs/quicklink) and [`nuxt-link`](https://github.com/nuxt/nuxt.js/pull/4574/).
+Forked from [vue-router-prefetch](https://github.com/egoist/vue-router-prefetch). Inspired by [quicklink](https://github.com/GoogleChromeLabs/quicklink) and [`nuxt-link`](https://github.com/nuxt/nuxt.js/pull/4574/).
 
-## Contributing
 
-1. Fork it!
-2. Create your feature branch: `git checkout -b my-new-feature`
-3. Commit your changes: `git commit -am 'Add some feature'`
-4. Push to the branch: `git push origin my-new-feature`
-5. Submit a pull request :D
+## Acknowledgment
 
-## Author
+If you found it useful somehow, I would be grateful if you could leave a star in the project's GitHub repository.
 
-**vue-router-prefetch** © EGOIST, Released under the [MIT](./LICENSE) License.<br>
-Authored and maintained by EGOIST with help from contributors ([list](https://github.com/egoist/vue-router-prefetch/contributors)).
+Thank you.
 
-> [Website](https://egoist.sh) · GitHub [@EGOIST](https://github.com/egoist) · Twitter [@\_egoistlily](https://twitter.com/_egoistlily)
+[npm-url]: https://www.npmjs.com/package/vue-route-prefetch
+[npm-image]: https://badge.fury.io/js/vue-route-prefetch.svg
+[npm-download]: https://img.shields.io/npm/dw/vue-route-prefetch
+[license]: https://img.shields.io/github/license/Clarkkkk/vue-route-prefetch
+[license-url]: https://github.com/Clarkkkk/vue-route-prefetch/blob/main/LICENSE.md
+[minified-size]: https://img.shields.io/bundlephobia/min/vue-route-prefetch
+[build-status]: https://img.shields.io/github/actions/workflow/status/Clarkkkk/vue-route-prefetch/.github%2Fworkflows%2Fpublish.yml
+[github-actions]: https://github.com/Clarkkkk/vue-route-prefetch/actions
