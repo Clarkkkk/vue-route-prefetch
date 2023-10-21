@@ -19,13 +19,13 @@
     "quicklink"
   ],
   "sideEffects": false,
-  "homepage": "https://github.com/Clarkkkk/vue-router-prefetch#readme",
+  "homepage": "https://github.com/Clarkkkk/vue-route-prefetch#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Clarkkkk/vue-router-prefetch"
+    "url": "git+https://github.com/Clarkkkk/vue-route-prefetch"
   },
   "bugs": {
-    "url": "https://github.com/Clarkkkk/vue-router-prefetch/issues"
+    "url": "https://github.com/Clarkkkk/vue-route-prefetch/issues"
   },
   "main": "dist/index.cjs",
   "module": "dist/index.js",
