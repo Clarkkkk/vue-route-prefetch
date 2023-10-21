@@ -1,3 +1,12 @@
+# 3.0.1    (2023-10-21)
+
+
+## **Bug Fixes**
+
+* externalize vue-router when building ([28aa697f](https://github.com/Clarkkkk/vue-router-prefetch/commit/28aa697f86c91b142b0205e6d05becf7ce05cd3d))
+
+
+
 # 3.0.0    (2023-10-20)
 
 
@@ -37,6 +46,13 @@
 
 
 # 2.0.2    (2021-08-12)
+
+
+*  ([](https://github.com/Clarkkkk/vue-router-prefetch/commit/636318a53ed6d17af7a2516e94fb1e30a039d14a))
+*  ([](https://github.com/Clarkkkk/vue-router-prefetch/commit/db0a1848b77d966265112d2000fe8a4f560accca))
+*  ([](https://github.com/Clarkkkk/vue-router-prefetch/commit/c7c4974c6e7bc789c09d746ed529f3ed0db3daa1))
+*  ([](https://github.com/Clarkkkk/vue-router-prefetch/commit/c38d8bc1475ec9c5435480bc421d7c3a327d13e4))
+*  ([](https://github.com/Clarkkkk/vue-router-prefetch/commit/cc0cf5e11e43ab1947f2373d1e45d7be7589d8e0))
 
 ## **Features**
 

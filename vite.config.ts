@@ -13,12 +13,7 @@ export default defineConfig({
             formats: ['cjs', 'es']
         },
         rollupOptions: {
-            external: ['@nuxt/schema', '@nuxt/kit', 'nuxt', 'vue', 'nuxt/app'],
-            output: {
-                globals: {
-                    vue: 'Vue'
-                }
-            }
+            external: ['vue', 'vue-router']
         }
     },
     plugins: [
