@@ -123,20 +123,22 @@ Signature:
 
 ```TypeScript
 function usePrefetch(): {
-    perfetchRoute: (link: RouteLocationRaw) => void;
+    prefetchRoute: (link: RouteLocationRaw) => void;
     prefetchFiles: (files: string[]) => void;
 }
 ```
 
 ```html
 <script setup>
+import { useRouter } from 'vue-router'
 import { usePrefetch } from 'vue-route-prefetch'
 
+const router = useRouter()
 const { prefetchRoute, prefetchFiles } = usePrefetch()
 </script>
 <template>
   <div>
-    <button @mouseenter="prefetchRoute('/details')">
+    <button @mouseenter="prefetchRoute('/details')" @click="router.push('/details')">
       See details
     </button>
     <button @mouseenter="prefetchFiles('/theme.css')">

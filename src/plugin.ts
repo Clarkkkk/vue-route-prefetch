@@ -45,7 +45,7 @@ export function installRouterPrefetch(
         },
         setup(props, { slots }) {
             let _linkObserved = false
-            const { perfetchRoute, prefetchFiles } = usePrefetch()
+            const { prefetchRoute, prefetchFiles } = usePrefetch()
             const elRef = ref<ComponentInstance | null>(null)
 
             onMounted(() => {
@@ -69,7 +69,7 @@ export function installRouterPrefetch(
             }
 
             function linkPrefetch() {
-                perfetchRoute(props.to)
+                prefetchRoute(props.to)
                 if (props.prefetchFiles) {
                     prefetchFiles(props.prefetchFiles)
                 }

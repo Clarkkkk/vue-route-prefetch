@@ -4,7 +4,7 @@ import prefetch from './prefetch'
 
 export function usePrefetch() {
     const router = useRouter()
-    function perfetchRoute(link: RouteLocationRaw) {
+    function prefetchRoute(link: RouteLocationRaw) {
         const route = router.resolve(link)
 
         if (route.meta.__prefetched) return
@@ -37,7 +37,7 @@ export function usePrefetch() {
         }
     }
 
-    return { perfetchRoute, prefetchFiles }
+    return { prefetchRoute, prefetchFiles }
 }
 
 function getRouteComponents(route: ReturnType<Router['resolve']>) {
